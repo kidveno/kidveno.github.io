@@ -1,13 +1,13 @@
 <template>
   <nav class="main-nav">
-    <span class="nav-lead">
+    <span class="nav-start">
       {{ name }}
     </span>
-    <Search></Search>
     <div class="nav-end">
        <router-link to="/">Home</router-link>
        <router-link to="/about">About</router-link>
     </div>
+    <Search></Search>
   </nav>
 </template>
 
@@ -27,28 +27,52 @@ export default class Nav extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+
+/*Phone */
+@media screen and (min-width:0px) and (max-width:480px){
+  .nav-end{
+    display:none;
+  }
+}
+/* tablet & small laptops */
+@media screen and (min-width:480px) and (max-width:768px){
+  .nav-end{
+    display:hidden;
+  }
+}
+/* Everything else */
+@media screen and (min-width:768px){
+  .nav-end{
+    width:80%;
+
+  }
+}
 nav.main-nav {
   width: 100%;
   height: 60px;
   background-color: var(--primary);
-  display: flex;
-  align-items: center;
   padding-left: 10px;
-
-  span.nav-lead {
+  display:flex;
+  align-items: center;
+  z-index: 2;
+  .nav-start {
     color: var(--secondary);
     background-color: var(--white);
     margin: 10px;
     padding: 6px;
-    font-size: 12pt;
+    font-size: 10pt;
+    width:13ch;
     border-radius: 1em;
     font-weight: bold;
+    text-align:center;
+    height:2ch;
   }
 
-  div.nav-end {
-    display: flex;
-    height: 100%;
-
+  .nav-end {
+    align-items:center;
+    margin-right:10px;
+    display:flex;
+    height:100%;
     a {
       height: 100%;
       font-size: 10pt;
@@ -56,6 +80,7 @@ nav.main-nav {
       display: flex;
       text-align: center;
       align-items: center;
+      margin-left:15px;
 
       i {
         margin: 10px;

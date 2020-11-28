@@ -1,7 +1,6 @@
 <template>
   <div class="page-container">
     <Nav></Nav>
-    <div class="hero">
       <div class="hero">
         <div class="hero-wrapper">
           <img class="rounded" src="assets/PGT.png" width="50" height="50" />
@@ -11,7 +10,6 @@
           </p>
         </div>
       </div>
-    </div>
     <div class="page-content">
       <router-view />
     </div>
@@ -30,6 +28,7 @@
       </a>
     </footer>
   </div>
+  <div id="modals" class="modal-wrapper"></div>
 </template>
 
 <style lang="scss">
@@ -44,6 +43,18 @@
   --white: ghostwhite;
   --shade: #f0f0f0;
   --light: #d4ffdas;
+}
+
+@media screen and (min-width:0px) and (max-width:768px){
+  .page-content{
+    width:100%;
+  }
+}
+@media screen and (min-width:768px){
+  .page-content{
+    width:80%;
+
+  }
 }
 /*
  Core styles
@@ -63,6 +74,10 @@ body,
   overflow: hidden;
 }
 
+img {
+  padding:10px;
+}
+
 /*
     links with no text decoration, and flexbox
 */
@@ -79,7 +94,7 @@ a {
 }
 
 .page-container {
-  width: 100%;
+  width: 100vw;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -106,23 +121,28 @@ a {
   .hero-wrapper {
     display: flex;
     align-items: center;
+    justify-content: center;
+    width:80%;
     height: 100%;
   }
 }
 
 .page-content {
   background-color: var(--white);
-  min-width: 400px;
-  max-width: 1080px;
-  min-height: 400px;
   overflow-y: scroll;
   padding: 1em;
   color: var(--secondary);
+  min-height:65%;
+
   article {
     border-bottom: 1px double var(--base);
+
   }
 }
 
+img.rounded{
+  border-radius: 50%;
+}
 footer {
   width: 100%;
   height: 10%;
@@ -175,8 +195,7 @@ export default class App extends Vue {
     console.log(util.GetBaseUrl())
     axios.get(articleDataPath)
       .then(response => {
-        console.log(response)
-        console.log(response.data)
+        this.articles = response.data
       })
   }
 }
