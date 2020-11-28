@@ -1,7 +1,3 @@
-<template>
-  <h1>home page</h1>
-</template>
-
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
 
@@ -9,5 +5,7 @@ import { Options, Vue } from 'vue-class-component'
   components: {
   }
 })
-export default class Home extends Vue {}
+export default class Hero extends Vue {
+
+}
 </script>

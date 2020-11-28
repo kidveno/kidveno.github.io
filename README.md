@@ -24,6 +24,7 @@ npm run test:unit
 ```
 npm run lint
 ```
+npm run lint -- --fix
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
