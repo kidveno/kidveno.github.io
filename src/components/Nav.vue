@@ -3,25 +3,39 @@
     <span class="nav-start">
       {{ name }}
     </span>
-    <div class="nav-end">
-       <router-link to="/">Home</router-link>
-       <router-link to="/about">About</router-link>
-    </div>
-    <Search></Search>
+    <button class="nav-btn" v-on:click="openSidebar">
+      <i class="fas fa-bars"></i>
+    </button>
+    <Sidebar ref="sidebar"></Sidebar>
   </nav>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
-import Search from '@/components/Search.vue'
+import Sidebar from '@/components/Sidebar.vue'
 
 @Options({
   components: {
-    Search
+    Sidebar
   }
 })
 export default class Nav extends Vue {
   name ='Ventroy Rolle';
+  $refs!: {
+    sidebar: Sidebar;
+  }
+
+  openSidebar () {
+    if (this.$refs.sidebar) {
+      this.$refs.sidebar.open()
+    }
+  }
+
+  closeSidebar () {
+    if (this.$refs.sidebar) {
+      this.$refs.sidebar.close()
+    }
+  }
 }
 </script>
 
@@ -30,8 +44,11 @@ export default class Nav extends Vue {
 
 /*Phone */
 @media screen and (min-width:0px) and (max-width:480px){
-  .nav-end{
-    display:none;
+  nav.main-nav{
+    flex-wrap: wrap;
+    .nav-end{
+    display:list-item;
+  }
   }
 }
 /* tablet & small laptops */
@@ -47,9 +64,19 @@ export default class Nav extends Vue {
 
   }
 }
+
+.nav-btn{
+  background-color: transparent;
+  border:none;
+  color:white;
+  font-size:24px;
+  position:absolute;
+  right:40px;
+}
+
 nav.main-nav {
   width: 100%;
-  height: 60px;
+  min-height:60px;
   background-color: var(--primary);
   padding-left: 10px;
   display:flex;
@@ -61,17 +88,17 @@ nav.main-nav {
     margin: 10px;
     padding: 6px;
     font-size: 10pt;
-    width:13ch;
+    min-width:13ch;
     border-radius: 1em;
     font-weight: bold;
-    text-align:center;
     height:2ch;
+    text-align: center;
   }
 
   .nav-end {
     align-items:center;
     margin-right:10px;
-    display:flex;
+    display:inline-flex;
     height:100%;
     a {
       height: 100%;

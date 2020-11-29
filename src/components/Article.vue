@@ -1,15 +1,15 @@
 <template>
   <article>
-            <small style="float:right">&#64;{{model.poster}}</small>
-            <h3>{{model.mainTitle}}</h3>
-            <img :src="model.imgPath" />
+            <small style="float:right">&#64;{{dataModel.poster}}</small>
+            <h3>{{dataModel.mainTitle}}</h3>
+            <img width="500" height="200" :src="dataModel.imgPath" />
             <div>
               <i class="fas fa-heart" style="color:tomato"> 29</i>
               <i class="fas fa-comments" style="color:teal"> 6</i>
             </div>
-              <h4>{{model.subTitle}}/h4>
+              <h4>{{dataModel.subTitle}}</h4>
             <p>
-              {{model.description}}
+              {{dataModel.description}}
             </p>
           </article>
 </template>
@@ -21,15 +21,11 @@ import ArticleModel from '../model/ArticleModel'
 
 @Options({
   props: {
-    model: ArticleModel
+    dataModel: ArticleModel
   }
 })
 export default class Article extends Vue {
-  model!: ArticleModel
-
-  get article (): ArticleModel {
-    return this.model
-  }
+  dataModel!: ArticleModel
 }
 </script>
 

@@ -11,12 +11,34 @@
   </div>
 </template>
 <style lang="scss" scoped>
+
+/*Phone */
+@media screen and (min-width:0px) and (max-width:480px){
+  .search-select{
+    width:100%;
+    display:none;
+
+  }
+}
+/* tablet & small laptops */
+@media screen and (min-width:480px) and (max-width:768px){
+  .search-select{
+    width:200px;
+  }
+}
+/* Everything else */
+@media screen and (min-width:768px){
+    .search-select{
+    width:300px;
+  }
+}
+
 .search-select {
-  min-width:150px;
-  max-width: 300px;
+  width:100%;
+  max-width:300px;
   height: 35px;
   padding: 0;
-  margin: 0;
+  margin-right: 30px;
   border: 2px solid var(--secondary);
 
   input[type="text"] {

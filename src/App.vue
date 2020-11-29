@@ -1,15 +1,7 @@
 <template>
   <div class="page-container">
     <Nav></Nav>
-      <div class="hero">
-        <div class="hero-wrapper">
-          <img class="rounded" src="assets/PGT.png" width="50" height="50" />
-          <p class="img-wrapped">
-            Developer with a focus on .NET (ASP Core C#) and Web (HTML, VueJs,
-            Typescript )
-          </p>
-        </div>
-      </div>
+    <Search></Search>
     <div class="page-content">
       <router-view />
     </div>
@@ -48,6 +40,9 @@
 @media screen and (min-width:0px) and (max-width:768px){
   .page-content{
     width:100%;
+  }
+  .hero{
+    display:none;
   }
 }
 @media screen and (min-width:768px){
@@ -177,26 +172,12 @@ footer {
 <script lang="ts">
 import { Vue, Options } from 'vue-class-component' // no default import, used { Prop } to import the decorator
 import Nav from '@/components/Nav.vue' // @ is an alias to /src
-import ArticleModel from './model/ArticleModel'
-import axios from 'axios'
 import util from './util'
-
-const articleDataPath = './assets/articles.json'
 
 @Options({
   components: {
     Nav
   }
 })
-export default class App extends Vue {
-  articles!: ArticleModel[];
-
-  mounted () {
-    console.log(util.GetBaseUrl())
-    axios.get(articleDataPath)
-      .then(response => {
-        this.articles = response.data
-      })
-  }
-}
+export default class App extends Vue {}
 </script>
