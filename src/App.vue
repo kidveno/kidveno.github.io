@@ -1,7 +1,6 @@
 <template>
   <div class="page-container">
     <Nav></Nav>
-    <Search></Search>
     <div class="page-content">
       <router-view />
     </div>
@@ -35,14 +34,12 @@
   --white: ghostwhite;
   --shade: #f0f0f0;
   --light: #d4ffdas;
+  --selected:#2788d1;
 }
 
 @media screen and (min-width:0px) and (max-width:768px){
   .page-content{
     width:100%;
-  }
-  .hero{
-    display:none;
   }
 }
 @media screen and (min-width:768px){
@@ -127,11 +124,14 @@ a {
   overflow-y: scroll;
   padding: 1em;
   color: var(--secondary);
-  min-height:65%;
-
+  height:75%;
+  margin-top:24px;
+  width:80%;
+  display:flex;
+  flex-direction:column;
+  box-shadow: 0 0 10px 0 #ffffffcc;
   article {
     border-bottom: 1px double var(--base);
-
   }
 }
 
@@ -168,16 +168,36 @@ footer {
     }
   }
 }
+::-webkit-scrollbar {
+ width: 9px;
+ height: 9px;
+}
+::-webkit-scrollbar-thumb {
+ background: linear-gradient(13deg, #2788d1 14%,#175686 64%);
+ border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover{
+ background: linear-gradient(13deg, #2788D1 14%,#175686 64%);
+}
+::-webkit-scrollbar-track{
+   background: var(--secondary);
+ border-radius: 10px;
+}
 </style>
 <script lang="ts">
 import { Vue, Options } from 'vue-class-component' // no default import, used { Prop } to import the decorator
 import Nav from '@/components/Nav.vue' // @ is an alias to /src
 import util from './util'
+import Search from '@/components/Search.vue'
 
 @Options({
   components: {
     Nav
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  mounted () {
+    this.$store.dispatch('loadArticlesAsync')
+  }
+}
 </script>

@@ -1,17 +1,20 @@
 <template>
   <article>
-            <small style="float:right">&#64;{{dataModel.poster}}</small>
-            <h3>{{dataModel.mainTitle}}</h3>
-            <img width="500" height="200" :src="dataModel.imgPath" />
-            <div>
-              <i class="fas fa-heart" style="color:tomato"> 29</i>
-              <i class="fas fa-comments" style="color:teal"> 6</i>
-            </div>
-              <h4>{{dataModel.subTitle}}</h4>
-            <p>
-              {{dataModel.description}}
-            </p>
-          </article>
+      <router-link to="/">
+            See Full Demo
+      </router-link>
+    <h3>{{dataModel.mainTitle}}</h3>
+    <img class="article-img" :src="dataModel.imgPath" />
+    <div class="tags">
+      <span class="tag" v-for="tag in dataModel.tags" :key="tag">
+        {{tag}}
+      </span>
+    </div>
+    <h4>{{dataModel.subTitle}}</h4>
+    <p>
+      {{dataModel.description}}
+    </p>
+  </article>
 </template>
 
 <script lang="ts">
@@ -21,7 +24,7 @@ import ArticleModel from '../model/ArticleModel'
 
 @Options({
   props: {
-    dataModel: ArticleModel
+    dataModel: null
   }
 })
 export default class Article extends Vue {
@@ -31,4 +34,52 @@ export default class Article extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+  .tags{
+    margin:5px;
+    display:flex;
+    justify-content: flex-end;
+  }
+  .tag{
+    padding: 0.5em;
+    &:before{
+      content:'#'
+    }
+    border-radius:1em;
+    background-color: var(--secondary);
+    color:var(--white);
+  }
+  .tag + .tag{
+    margin-left:5px;
+  }
+
+  article{
+    width:400px;
+    border:2px solid var(--secondary);
+    padding:8px;
+    border-radius: 1em;
+    margin-bottom: 1em;
+    a {
+      float:right;
+      width:auto;
+      text-decoration:underline;
+      &:visited{
+        color:var(--primary);
+      }
+    }
+    .article-img{
+      width:380px;
+      height:150px;
+      padding:none;
+      margin:none;
+      object-fit: cover;
+    }
+    h3, h4, p{
+      margin-top:8px;
+      margin-bottom:4px;
+
+    }
+  }
+  article + article{
+    margin-left:10px;
+  };
 </style>

@@ -3,6 +3,7 @@
     <span class="nav-start">
       {{ name }}
     </span>
+    <Search></Search>
     <button class="nav-btn" v-on:click="openSidebar">
       <i class="fas fa-bars"></i>
     </button>
@@ -13,10 +14,11 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
 import Sidebar from '@/components/Sidebar.vue'
+import Search from '@/components/Search.vue'
 
 @Options({
   components: {
-    Sidebar
+    Sidebar, Search
   }
 })
 export default class Nav extends Vue {
@@ -72,6 +74,10 @@ export default class Nav extends Vue {
   font-size:24px;
   position:absolute;
   right:40px;
+  &:focus{
+    box-shadow: 0 0 10px 0 #ffffffcc;
+    outline:none;
+  }
 }
 
 nav.main-nav {
@@ -82,6 +88,7 @@ nav.main-nav {
   display:flex;
   align-items: center;
   z-index: 2;
+  position: sticky;
   .nav-start {
     color: var(--secondary);
     background-color: var(--white);
@@ -93,6 +100,11 @@ nav.main-nav {
     font-weight: bold;
     height:2ch;
     text-align: center;
+    &:hover{
+      box-shadow: 0 0 10px 0 #ffffffcc;
+
+    }
+
   }
 
   .nav-end {

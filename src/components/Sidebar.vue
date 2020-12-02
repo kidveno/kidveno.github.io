@@ -3,16 +3,16 @@
     <button v-on:click="close" class="close-btn">✖</button>
     <div class="sidebar-content-right">
     <div class="sidbar-content-wrapper">
-      <h3 class="title">menu</h3>
+      <h3 class="title">Menu</h3>
       <ul class="no-bullets">
         <li>
-          <router-link to="/">
+          <router-link to="/" @click="close">
             <i class="fas fa-home"></i>
             home
           </router-link>
         </li>
         <li>
-          <router-link to="/about">
+          <router-link to="/about" @click="close">
             <i class="fas fa-address-card"></i>
             about
           </router-link>
@@ -24,6 +24,18 @@
 
 </template>
 <style lang="scss">
+
+@media screen and (min-width:0px) and (max-width:768px){
+  .sidebar-content-right{
+    --sidebar-width:150px;
+  }
+}
+@media screen and (min-width:768px){
+  .sidebar-content-right{
+    --sidebar-width:300px;
+  }
+}
+
 ul.no-bullets {
   list-style-type: none; /* Remove bullets */
   margin: 0;
@@ -89,15 +101,22 @@ ul.no-bullets {
       background-color: white;
       color: gray;
     }
+    &:focus{
+      outline:none;
+      box-shadow: 0 0 10px 0 #ffffffcc;
+    }
   }
   .sidebar-content-right {
-    width: 300px;
+    width: var(--sidebar-width);
     height: 100%;
     float: right;
     background-color: var(--primary);
     transform-origin: top right;
     animation-fill-mode: forwards;
     animation-duration: 0.5s;
+    .title{
+      margin-left:10px;
+    }
   }
   &.opened > .sidebar-content-right {
     animation-name: enter_right;
@@ -130,7 +149,7 @@ ul.no-bullets {
 @keyframes side_closed {
   0% {
     opacity: 100%;
-    width: 300px;
+    width: var(--sidebar-width);
     pointer-events: auto;
   }
   100% {
@@ -147,7 +166,7 @@ ul.no-bullets {
   }
   100% {
     opacity: 100%;
-    width: 300px;
+    width: var(--sidebar-width);
     pointer-events: auto;
   }
 }
@@ -166,7 +185,7 @@ ul.no-bullets {
 @keyframes leave_right {
   0% {
     opacity: 0%;
-    width: 300px;
+    width: var(--sidebar-width);
     pointer-events: none;
   }
   100% {
@@ -184,22 +203,19 @@ export default class Sidebar extends Vue {
     opened = false;
 
     public open () {
-      this.opened = true
-      this.$emit('sidebar-changed', this.opened)
+      this.$store.commit('setSidebarOpened', true)
     }
 
     public close () {
-      this.opened = false
-      this.$emit('sidebar-changed', this.opened)
+      this.$store.commit('setSidebarOpened', false)
     }
 
     public toggle () {
-      this.opened = !this.opened
-      this.$emit('sidebar-changed', this.opened)
+      this.$store.commit('toggleSidebar')
     }
 
     public get modalClass () {
-      return this.opened ? 'modal opened' : 'modal closed'
+      return this.$store.state.sidebarOpened ? 'modal opened' : 'modal closed'
     }
 }
 </script>
