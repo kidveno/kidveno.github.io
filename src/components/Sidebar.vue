@@ -127,45 +127,45 @@ ul.no-bullets {
 }
 @keyframes _closed {
   0% {
-    opacity: 100%;
+    opacity: 1;
     pointer-events: auto;
   }
   100% {
-    opacity: 0%;
+    opacity: 0.000001;
     pointer-events: none;
   }
 }
 @keyframes _opened {
   0% {
-    opacity: 0%;
+    opacity:  0.000001;
     pointer-events: none;
   }
   100% {
-    opacity: 100%;
+    opacity: 1;
     pointer-events: auto;
   }
 }
 
 @keyframes side_closed {
   0% {
-    opacity: 100%;
+    opacity: 1;
     width: var(--sidebar-width);
     pointer-events: auto;
   }
   100% {
-    opacity: 0%;
+    opacity: 0.000001;
     width: 0;
     pointer-events: none;
   }
 }
 @keyframes side_opened {
   0% {
-    opacity: 0%;
+    opacity: 0.000001;
     width: 0;
     pointer-events: none;
   }
   100% {
-    opacity: 100%;
+    opacity: 1;
     width: var(--sidebar-width);
     pointer-events: auto;
   }
@@ -173,7 +173,7 @@ ul.no-bullets {
 
 @keyframes enter_right {
   0% {
-    opacity: 0%;
+    opacity: 0.000001;
     width: 0;
     pointer-events: none;
   }
@@ -184,7 +184,7 @@ ul.no-bullets {
 
 @keyframes leave_right {
   0% {
-    opacity: 0%;
+    opacity: 0;
     width: var(--sidebar-width);
     pointer-events: none;
   }
