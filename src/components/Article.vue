@@ -6,9 +6,7 @@
     <h3>{{dataModel.mainTitle}}</h3>
     <img class="article-img" :src="dataModel.imgPath" />
     <div class="tags">
-      <span class="tag" v-for="tag in dataModel.tags" :key="tag">
-        {{tag}}
-      </span>
+        <Tag :tagTxt="tag" v-for="tag in dataModel.tags" :key="tag"></Tag>
     </div>
     <h4>{{dataModel.subTitle}}</h4>
     <p>
@@ -21,10 +19,14 @@
 import component from '*.vue'
 import { Options, Vue } from 'vue-class-component'
 import ArticleModel from '../model/ArticleModel'
+import Tag from '@/components/Tag.vue'
 
 @Options({
   props: {
     dataModel: null
+  },
+  components: {
+    Tag
   }
 })
 export default class Article extends Vue {
@@ -34,23 +36,6 @@ export default class Article extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-  .tags{
-    margin:5px;
-    display:flex;
-    justify-content: flex-end;
-  }
-  .tag{
-    padding: 0.5em;
-    &:before{
-      content:'#'
-    }
-    border-radius:1em;
-    background-color: var(--secondary);
-    color:var(--white);
-  }
-  .tag + .tag{
-    margin-left:5px;
-  }
 
   article{
     width:400px;

@@ -87,25 +87,6 @@ ul.no-bullets {
   &.closed {
     animation-name: _closed;
   }
-
-  button.close-btn {
-    position: fixed;
-    right: 2%;
-    top: 2%;
-    color: white;
-    background-color: transparent;
-    border: 1px solid white;
-    border-radius: 50%;
-    z-index: 1;
-    &:active {
-      background-color: white;
-      color: gray;
-    }
-    &:focus{
-      outline:none;
-      box-shadow: 0 0 10px 0 #ffffffcc;
-    }
-  }
   .sidebar-content-right {
     width: var(--sidebar-width);
     height: 100%;
