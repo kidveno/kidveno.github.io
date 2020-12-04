@@ -1,6 +1,10 @@
+ <!--
+ Navigation Component. This also contains the 'Sidebar' modal with element reference to
+ open and close the modal
+ -->
 <template>
   <nav class="main-nav">
-    <span class="nav-start">
+    <span class="nav-brand">
       {{ name }}
     </span>
     <Search></Search>
@@ -22,17 +26,26 @@ import Search from '@/components/Search.vue'
   }
 })
 export default class Nav extends Vue {
+  /**
+   * Name data
+   */
   name ='Ventroy Rolle';
   $refs!: {
     sidebar: Sidebar;
   }
 
+  /**
+   * Opens the sidebar
+   */
   openSidebar () {
     if (this.$refs.sidebar) {
       this.$refs.sidebar.open()
     }
   }
 
+  /**
+   * Closes the sidebar
+   */
   closeSidebar () {
     if (this.$refs.sidebar) {
       this.$refs.sidebar.close()
@@ -67,6 +80,9 @@ export default class Nav extends Vue {
   }
 }
 
+/**
+  Navigation Button
+ */
 .nav-btn{
   background-color: transparent;
   border:none;
@@ -79,7 +95,7 @@ export default class Nav extends Vue {
     outline:none;
   }
 }
-
+/**navitation element */
 nav.main-nav {
   width: 100%;
   min-height:60px;
@@ -89,7 +105,11 @@ nav.main-nav {
   align-items: center;
   z-index: 2;
   position: sticky;
-  .nav-start {
+
+  /*
+      Branding Style
+   */
+  .nav-brand {
     color: var(--secondary);
     background-color: var(--white);
     margin: 10px;
@@ -101,17 +121,19 @@ nav.main-nav {
     height:2ch;
     text-align: center;
     &:hover{
-      box-shadow: 0 0 10px 0 #ffffffcc;
+      box-shadow: 0 0 10px 0 var(--white);
 
     }
-
   }
-
+  /*
+      End of the navitation
+   */
   .nav-end {
     align-items:center;
     margin-right:10px;
     display:inline-flex;
     height:100%;
+    /* links */
     a {
       height: 100%;
       font-size: 10pt;
@@ -120,11 +142,11 @@ nav.main-nav {
       text-align: center;
       align-items: center;
       margin-left:15px;
-
+      /** Icon styles */
       i {
         margin: 10px;
       }
-
+      /*  a:hover */
       &:hover {
         color: var(--primary);
         background-color: var(--white);

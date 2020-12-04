@@ -1,3 +1,6 @@
+<!--
+  Search Component for searching 'articles'. Uses Fuse.js for filtering results
+-->
 <template>
   <div class='search'>
     <div class='search-select'>
@@ -8,7 +11,7 @@
         v-model='searchText'
         @input='search'
       />
-      <ol>
+      <ol class="results">
         <li v-for='a in searchedArticles' :key='a.id'>
           {{ a.item.mainTitle }}
         </li>
@@ -20,7 +23,9 @@
   </div>
 </template>
 <style lang='scss' scoped>
-
+/*
+    Button style for control that will clear the search selection
+ */
 button.clear-btn {
   width: 40px;
   height: 100%;
@@ -28,6 +33,7 @@ button.clear-btn {
   padding: 0;
   border: none;
   display:none;
+
   &:focus{
     outline: none;
   }
@@ -36,11 +42,12 @@ button.clear-btn {
   }
 
 }
-
+/* Search component container */
 .search {
   height: 35px;
   display:flex;
   position: relative;
+  /* Style of content to appear before the components 'input' element */
   .pre-search{
     width:20px;
     height:100%;
@@ -56,11 +63,12 @@ button.clear-btn {
       color:var(--primary);
     }
   }
-
+  /* Style of the container for the search component's 'input' element*/
   .search-select {
     width: 250px;
     height: 100%;
     padding: 0;
+  /* Style of the search component's 'input' element */
     input[type='text'] {
       width: 100%;
       height: 100%;
@@ -73,11 +81,11 @@ button.clear-btn {
       }
       &:focus {
         outline:none;
-        box-shadow: 0 0 10px 0 #ffffffcc;
+        box-shadow: 0 0 10px 0 var(--white);
       }
     }
-
-    input:valid:focus + ol {
+    /* makes the search results only visible if the 'input' is valid and in focus */
+    input:valid:focus + ol.results {
       display: block;
       animation-name: OpenSearch;
       animation-duration: 0.1s;
@@ -86,8 +94,10 @@ button.clear-btn {
 
     }
 
-    /*Set Max Height*/
-    ol {
+    /*
+      Search Results list
+    */
+    ol.results {
       display: none;
       width:250px;
       padding: 0;
@@ -113,6 +123,7 @@ button.clear-btn {
         color: var(--base);
         padding-left:10px;
         cursor:pointer;
+
         &:hover {
           background-color: var(--selected);
           color:white;
@@ -120,6 +131,7 @@ button.clear-btn {
       }
     }
   }
+  /* Container for the search components controls ie the clear-btn */
   .controls{
     height:100%;
     position:relative;
@@ -134,6 +146,9 @@ import Fuse from 'fuse.js'
 
 @Options({})
 export default class Search extends Vue {
+  /**
+   * Fuse.JS search options
+   */
   searchOptions = {
     // isCaseSensitive: false,
     // includeScore: false,
@@ -150,12 +165,13 @@ export default class Search extends Vue {
     keys: ['mainTitle', 'subTitle', 'tags', 'description']
   }
 
-  fuse!: Fuse<ArticleModel>
+  private fuse!: Fuse<ArticleModel>
   /**
    * v-model for search
    */
   searchText = ''
-  /*
+  /**
+   * getter for returning articles from store; based on @searchText
    */
   get searchedArticles (): Fuse.FuseResult<ArticleModel>[] {
     this.fuse = new Fuse(this.$store.state.articles, this.searchOptions)
@@ -163,6 +179,10 @@ export default class Search extends Vue {
     return result
   }
 
+  /**
+   * getter for returning the style for the clear button.
+   * clear button should be invisible when the input element is 'invalid'
+   */
   get clearButtonClass (): string {
     return this.searchText === ''
       ? 'clear-btn'
@@ -170,7 +190,7 @@ export default class Search extends Vue {
   }
 
   /**
-   *
+   * Clears the search text
    */
   clearSearch () {
     this.searchText = ''

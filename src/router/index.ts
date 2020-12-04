@@ -6,7 +6,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'Home',
     component: Home,
-    props: route => ({ tag: route.query.tag })
+    props: route => ({ tag: route.query.tag, viewingArticleId: route.query.aid })
   },
   {
     path: '/about',

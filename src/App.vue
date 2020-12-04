@@ -5,6 +5,9 @@
       <router-view />
     </div>
     <footer>
+      <a href="https://github.com/kidveno/kidveno.github.io" target="_blank">
+        <i class="fas fa-code"></i>
+      </a>
       <a href="https://twitter.com/TroyGotCode" target="_blank">
         <i class="fab fa-twitter"></i>
       </a>
@@ -56,7 +59,7 @@
     }
   }
 
- .clear-btn {
+ .clear-page-btn {
     color: var(--secondary);
     background-color: transparent;
     border: 2px solid var(--secondary);

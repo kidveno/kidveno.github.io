@@ -1,4 +1,6 @@
-
+<!--
+    A tag component that links to all content sharing the same tag
+-->
 <template>
         <router-link :to="link">
 
@@ -37,7 +39,13 @@ import { Vue, Options } from 'vue-class-component'
   }
 })
 export default class Tag extends Vue {
+    /**
+     * Text to display for this tag
+     */
     tagTxt!: string
+    /**
+     * getter for the link to 'articles' with this tag
+     */
     get link (): string {
       return `/?tag=${this.tagTxt}`
     }

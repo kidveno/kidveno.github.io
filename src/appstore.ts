@@ -22,6 +22,9 @@ const store = new Store<AppState>({
     }
   },
   mutations: {
+    /**
+     * Add a list of articles to the store
+     */
     addArticles: (state: AppState, payload: ArticleModel[]) => {
       if (state.articles.length === 0 || !state.articles) {
         payload.forEach(am => {
@@ -29,9 +32,18 @@ const store = new Store<AppState>({
         })
       }
     },
+    /**
+     * Sets sidebar state
+     * @param state Duh
+     * @param payload boolean containing the sidebar state to set
+     */
     setSidebarOpened (state: AppState, payload: boolean) {
       state.sidebarOpened = payload
     },
+    /**
+     * Toggles sidebar state
+     * @param state Duh
+     */
     toggleSidebar (state: AppState) {
       state.sidebarOpened = !state.sidebarOpened
     }

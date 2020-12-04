@@ -1,10 +1,13 @@
+<!--
+  Sidebar navigation. Sidebar opened state is stored in $store
+-->
 <template>
 <div :class="modalClass">
     <button v-on:click="close" class="close-btn">✖</button>
     <div class="sidebar-content-right">
     <div class="sidbar-content-wrapper">
       <h3 class="title">Menu</h3>
-      <ul class="no-bullets">
+      <ul class="side-items">
         <li>
           <router-link to="/" @click="close">
             <i class="fas fa-home"></i>
@@ -25,6 +28,7 @@
 </template>
 <style lang="scss">
 
+/* Media Queries */
 @media screen and (min-width:0px) and (max-width:768px){
   .sidebar-content-right{
     --sidebar-width:150px;
@@ -35,8 +39,8 @@
     --sidebar-width:300px;
   }
 }
-
-ul.no-bullets {
+/* List stying for sidebar items */
+ul.side-items {
   list-style-type: none; /* Remove bullets */
   margin: 0;
   padding: 0;
@@ -71,7 +75,9 @@ ul.no-bullets {
     }
   }
 }
-
+/*
+  Covers window and prevents elements below the modal from being clicked
+ */
 .modal {
   background-color: rgba(0, 0, 0, 0.3);
   width: 100vw;
@@ -106,6 +112,9 @@ ul.no-bullets {
     animation-name: leave_right;
   }
 }
+
+/* Animations */
+
 @keyframes _closed {
   0% {
     opacity: 1;
@@ -123,31 +132,6 @@ ul.no-bullets {
   }
   100% {
     opacity: 1;
-    pointer-events: auto;
-  }
-}
-
-@keyframes side_closed {
-  0% {
-    opacity: 1;
-    width: var(--sidebar-width);
-    pointer-events: auto;
-  }
-  100% {
-    opacity: 0.000001;
-    width: 0;
-    pointer-events: none;
-  }
-}
-@keyframes side_opened {
-  0% {
-    opacity: 0.000001;
-    width: 0;
-    pointer-events: none;
-  }
-  100% {
-    opacity: 1;
-    width: var(--sidebar-width);
     pointer-events: auto;
   }
 }
@@ -181,22 +165,32 @@ import ref from 'vue'
 
 @Options({})
 export default class Sidebar extends Vue {
-    opened = false;
+  /*
+        opens the sidebar
+     */
+  public open () {
+    this.$store.commit('setSidebarOpened', true)
+  }
 
-    public open () {
-      this.$store.commit('setSidebarOpened', true)
-    }
+  /**
+     * Closes the Sidebar
+     */
+  public close () {
+    this.$store.commit('setSidebarOpened', false)
+  }
 
-    public close () {
-      this.$store.commit('setSidebarOpened', false)
-    }
+  /**
+     * Toggles the Sidebar from its current state to the opposite
+     */
+  public toggle () {
+    this.$store.commit('toggleSidebar')
+  }
 
-    public toggle () {
-      this.$store.commit('toggleSidebar')
-    }
-
-    public get modalClass () {
-      return this.$store.state.sidebarOpened ? 'modal opened' : 'modal closed'
-    }
+  /**
+     * getter for the modal class containing the Sidebar
+     */
+  public get modalClass () {
+    return this.$store.state.sidebarOpened ? 'modal opened' : 'modal closed'
+  }
 }
 </script>

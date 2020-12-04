@@ -1,3 +1,4 @@
+ <!--Represents a preview of an article-->
 <template>
   <article>
       <router-link to="/">
@@ -33,8 +34,6 @@ export default class Article extends Vue {
   dataModel!: ArticleModel
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
   article{
