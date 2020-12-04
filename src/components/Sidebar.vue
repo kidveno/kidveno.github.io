@@ -75,25 +75,8 @@ ul.side-items {
     }
   }
 }
-/*
-  Covers window and prevents elements below the modal from being clicked
- */
-.modal {
-  background-color: rgba(0, 0, 0, 0.3);
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  animation-fill-mode: forwards;
-  animation-duration: 0.6s;
-  &.opened {
-    animation-name: _opened;
-  }
-  &.closed {
-    animation-name: _closed;
-  }
-  .sidebar-content-right {
+
+ .sidebar-content-right {
     width: var(--sidebar-width);
     height: 100%;
     float: right;
@@ -105,36 +88,14 @@ ul.side-items {
       margin-left:10px;
     }
   }
-  &.opened > .sidebar-content-right {
+  .opened > .sidebar-content-right {
     animation-name: enter_right;
   }
-  &.closed > .sidebar-content-right {
+  .closed > .sidebar-content-right {
     animation-name: leave_right;
   }
-}
 
 /* Animations */
-
-@keyframes _closed {
-  0% {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  100% {
-    opacity: 0.000001;
-    pointer-events: none;
-  }
-}
-@keyframes _opened {
-  0% {
-    opacity:  0.000001;
-    pointer-events: none;
-  }
-  100% {
-    opacity: 1;
-    pointer-events: auto;
-  }
-}
 
 @keyframes enter_right {
   0% {

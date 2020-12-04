@@ -7,9 +7,9 @@ export default {
   },
   /**
    * Returns unique values in an array
-   * @param value 
-   * @param index 
-   * @param self 
+   * @param value
+   * @param index
+   * @param self
    */
   onlyUnique: function (value: any, index: number, self: any) {
     return self.indexOf(value) === index

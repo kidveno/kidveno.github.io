@@ -19,7 +19,7 @@ import ArticleModel from '../model/ArticleModel'
     article: null
   }
 })
-export default class ArticlePage extends Vue {
+export default class ArticleModal extends Vue {
 
 }
 </script>

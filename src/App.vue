@@ -211,6 +211,50 @@ footer {
     }
   }
 }
+
+/*
+  Covers window and prevents elements below the modal from being clicked
+ */
+.modal {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation-fill-mode: forwards;
+  animation-duration: 0.6s;
+  &.opened {
+    animation-name: modal_opened;
+  }
+  &.closed {
+    animation-name: modal_closed;
+  }
+}
+
+@keyframes modal_closed {
+  0% {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  100% {
+    opacity: 0.000001;
+    pointer-events: none;
+  }
+}
+@keyframes modal_opened {
+  0% {
+    opacity:  0.000001;
+    pointer-events: none;
+  }
+  100% {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* Scroll bars */
+
 ::-webkit-scrollbar {
  width: 9px;
  height: 9px;
