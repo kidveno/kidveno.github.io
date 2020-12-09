@@ -1,14 +1,13 @@
 <template>
-          <vue3-markdown-it :source="markdownText"/>
+    <router-link to="/">
+      <i class="fas fa-angle-double-left"></i>
+      Home
+    </router-link>
+    <vue3-markdown-it :source="markdownText"/>
 </template>
 
 <style lang="scss" scoped>
-article.page {
-  display:flex;
-  justify-content: center;
-  width:80%;
-  min-height: 100%;
-}
+
 </style>
 
 <script lang="ts">

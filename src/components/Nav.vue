@@ -9,7 +9,7 @@
     </span>
     <Search></Search>
     <button class="nav-btn" v-on:click="openSidebar">
-      <i class="fas fa-bars"></i>
+     Menu <i class="fas fa-bars"></i>
     </button>
     <Sidebar ref="sidebar"></Sidebar>
   </nav>

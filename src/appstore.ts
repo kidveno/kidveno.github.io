@@ -40,11 +40,14 @@ const store = new Store<AppState>({
   state: new AppState(),
   actions: {
     loadArticleMarkdownAsync: async (ctx, articleId: string) => {
+      if (!articleId) {
+        return
+      }
       try {
         const response = await axios.get(`${articleMarkdownPath}/${articleId}.md`)
         ctx.commit('setArticleMarkdown', { markdown: response.data, articleId })
       } catch (error) {
-        console.error(error)
+        console.warn(error)
       }
     },
     loadArticlesAsync: async (ctx) => {
@@ -94,6 +97,7 @@ const store = new Store<AppState>({
     }
   },
   getters: {
+
     currentArticle (state: AppState): ArticleModel | null {
       if (state.currentArticleId === '' || state.currentArticleId === undefined) {
         return null

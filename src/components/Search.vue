@@ -9,10 +9,11 @@
         required='required'
         type='text'
         v-model='searchText'
-        @input='search'
+        @focusin="inputFocusChanged(true)"
+        @focusout="inputFocusChanged(false)"
       />
-      <ol class="results">
-        <li v-for='a in searchedArticles' :key='a.id'>
+      <ol :class="searchResultClass">
+        <li v-for='a in searchedArticles' :key='a.refIndex' @click="navigate(a.item)">
           {{ a.item.mainTitle }}
         </li>
       </ol>
@@ -84,15 +85,6 @@ button.clear-btn {
         box-shadow: 0 0 10px 0 var(--white);
       }
     }
-    /* makes the search results only visible if the 'input' is valid and in focus */
-    input:valid:focus + ol.results {
-      display: block;
-      animation-name: OpenSearch;
-      animation-duration: 0.1s;
-      animation-fill-mode: forwards;
-      border: 1px solid var(--secondary);
-
-    }
 
     /*
       Search Results list
@@ -104,6 +96,15 @@ button.clear-btn {
       margin: 0;
       max-height: 160px;
       overflow: hidden scroll;
+
+      &.opened {
+        display: block;
+        animation-name: OpenSearch;
+        animation-duration: 0.1s;
+        animation-fill-mode: forwards;
+        border: 1px solid var(--secondary);
+      }
+
       li:first-child {
         border-top: 1px solid var(--secondary);
       }
@@ -119,8 +120,9 @@ button.clear-btn {
         background-color: var(--white);
         align-items: center;
         border-bottom: 1px solid var(--secondary);
-        pointer-events: auto;
-        color: var(--base);
+          color: var(--secondary);
+
+       // pointer-events: auto;
         padding-left:10px;
         cursor:pointer;
 
@@ -143,9 +145,12 @@ button.clear-btn {
 import ArticleModel from '@/model/ArticleModel'
 import { Options, Vue } from 'vue-class-component'
 import Fuse from 'fuse.js'
+import router from '../router'
 
 @Options({})
 export default class Search extends Vue {
+  inputFocused = false
+
   /**
    * Fuse.JS search options
    */
@@ -176,7 +181,27 @@ export default class Search extends Vue {
   get searchedArticles (): Fuse.FuseResult<ArticleModel>[] {
     this.fuse = new Fuse(this.$store.state.articles, this.searchOptions)
     const result = this.fuse.search(this.searchText)
+
     return result
+  }
+
+  getRouterLink (article: ArticleModel): string {
+    return `/article/?articleid=${article.id}`
+  }
+
+  get searchResultClass (): string {
+    const classes = this.inputFocused && this.searchText !== ''
+      ? 'results opened'
+      : 'results'
+    return classes
+  }
+
+  navigate (article: ArticleModel) {
+    this.clearSearch()
+    router.push({
+      path: '/article',
+      query: { articleid: article.id }
+    })
   }
 
   /**
@@ -194,6 +219,19 @@ export default class Search extends Vue {
    */
   clearSearch () {
     this.searchText = ''
+  }
+
+  inputFocusChanged (focus: boolean) {
+    if (!focus) { // focus lost wait before closing
+      setTimeout(() => {
+        this.$nextTick(() => {
+          this.inputFocused = false
+          console.log(this.searchResultClass)
+        })
+      }, 500)
+    } else {
+      this.inputFocused = focus
+    }
   }
 
   /**

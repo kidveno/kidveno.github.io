@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './appstore'
 import VueMarkdownIt from 'vue3-markdown-it'
-import 'highlight.js/styles/obsidian.css'
+import 'highlight.js/styles/vs2015.css'
 
 const app = createApp(App)
   .use(router)
