@@ -10,12 +10,11 @@
       <router-link v-if="hasTag" to="/" class="clear-page-btn">✖</router-link>
       <hr>
     </header>
-    <Article  v-for="a in articles" :key="a.id" :dataModel="a"></Article>
+    <ArticleSummary v-for="a in articles" :key="a.id" :dataModel="a"></ArticleSummary>
   </div>
 </template>
 
 <style lang="scss">
-
   header{
     width:100%;
     h1, h2{
@@ -36,14 +35,14 @@ import Article from '@/components/Article.vue'
 import ArticleModel from '@/model/ArticleModel'
 import axios from 'axios'
 import util from '../util'
+import ArticleSummary from '@/components/ArticleSummary.vue'
 
 @Options({
   components: {
-    Article
+    ArticleSummary
   },
   props: {
-    tag: '',
-    viewingArticleId: ''
+    tag: ''
   }
 })
 export default class Home extends Vue {
@@ -51,10 +50,7 @@ export default class Home extends Vue {
    * Tag selected base on 'route'
    */
   tag!: string
-  /**
-   * Article currently in focus from 'route'
-   */
-  viewingArticleId!: string
+
   /**
    * getter for showing contented with the selected 'tag'
    */
@@ -93,6 +89,20 @@ export default class Home extends Vue {
     } else {
       return this.$store.state.articles
     }
+  }
+
+  getArticleById (id: string): ArticleModel | null {
+    if (!id || id === '') {
+      return null
+    }
+    const articles = this.$store.state.articles.filter(a => {
+      return a.id === id
+    })
+
+    if (articles.length === 0) {
+      return null
+    }
+    return articles[0]
   }
 
   /**

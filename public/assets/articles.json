@@ -7,85 +7,8 @@
         "raw":"Hello this is my body, it is simple text",
         "imgPath":"./assets/PGT.png",
         "codepenUrl":"https://codepen.io/troygotcode/pen/VwjLLBL",
+        "markdown":"",
         "id":"test-1",
-        "tags":[
-            "test"
-        ]
-    },
-    {
-        "mainTitle":"Simple Article Test 2",
-        "subTitle":"Simple Article Test",
-        "poster":"PartyGodTroy",
-        "description":"Hello this is my body, it is simple text",
-        "raw":"Hello this is my body, it is simple text",
-        "imgPath":"./assets/PGT.png",
-        "codepenUrl":"https://codepen.io/troygotcode/pen/VwjLLBL",
-        "id":"test-2",
-        "tags":[
-             "codepen"
-        ]
-    },
-    {
-        "mainTitle":"Simple Article Test 3",
-        "subTitle":"Simple Article Test",
-        "poster":"PartyGodTroy",
-        "description":"Hello this is my body, it is simple text",
-        "raw":"Hello this is my body, it is simple text",
-        "imgPath":"./assets/PGT.png",
-        "codepenUrl":"https://codepen.io/troygotcode/pen/VwjLLBL",
-        "id":"test-3",
-        "tags":[
-            "test"
-        ]
-    },
-    {
-        "mainTitle":"Simple Article Test 4",
-        "subTitle":"Simple Article Test",
-        "poster":"PartyGodTroy",
-        "description":"Hello this is my body, it is simple text",
-        "raw":"Hello this is my body, it is simple text",
-        "imgPath":"./assets/PGT.png",
-        "codepenUrl":"https://codepen.io/troygotcode/pen/VwjLLBL",
-        "id":"test-4",
-        "tags":[
-             "codepen"
-        ]
-    },
-    {
-        "mainTitle":"Simple Article Test 5",
-        "subTitle":"Simple Article Test",
-        "poster":"PartyGodTroy",
-        "description":"Hello this is my body, it is simple text",
-        "raw":"Hello this is my body, it is simple text",
-        "imgPath":"./assets/PGT.png",
-        "codepenUrl":"https://codepen.io/troygotcode/pen/VwjLLBL",
-        "id":"test-5",
-        "tags":[
-            "test"
-        ]
-    },
-    {
-        "mainTitle":"Simple Article Test 6",
-        "subTitle":"Simple Article Test",
-        "poster":"PartyGodTroy",
-        "description":"Hello this is my body, it is simple text",
-        "raw":"Hello this is my body, it is simple text",
-        "imgPath":"./assets/PGT.png",
-        "codepenUrl":"https://codepen.io/troygotcode/pen/VwjLLBL",
-        "id":"test-6",
-        "tags":[
-            "codepen"
-        ]
-    },
-    {
-        "mainTitle":"Simple Article Test 7",
-        "subTitle":"Simple Article Test",
-        "poster":"PartyGodTroy",
-        "description":"Hello this is my body, it is simple text",
-        "raw":"Hello this is my body, it is simple text",
-        "imgPath":"./assets/PGT.png",
-        "codepenUrl":"https://codepen.io/troygotcode/pen/VwjLLBL",
-        "id":"test-7",
         "tags":[
             "test"
         ]

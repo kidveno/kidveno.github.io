@@ -201,6 +201,7 @@ export default class Search extends Vue {
    */
   search (e: InputEvent) {
     const input = e.target as HTMLInputElement
+
     // list of strings seperated by space
   }
 }

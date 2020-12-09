@@ -38,4 +38,8 @@ export default interface ArticleModel {
      * Tags for this article
      */
     tags: string[];
+    /**
+     * Markdown to be loaded from file
+     */
+    markdown: string | null;
 }

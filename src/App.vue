@@ -26,6 +26,21 @@
 </template>
 
 <style lang="scss">
+
+/*
+* Media Queries
+*/
+@media screen and (min-width:0px) and (max-width:768px){
+  .page-content{
+    width:100%;
+  }
+}
+@media screen and (min-width:768px){
+  .page-content{
+    width:80%;
+  }
+}
+
 /*
 * Theme Colors
 */
@@ -79,18 +94,6 @@
       box-shadow: 0 0 10px 0 var(--white);
     }
   }
-
-@media screen and (min-width:0px) and (max-width:768px){
-  .page-content{
-    width:100%;
-  }
-}
-@media screen and (min-width:768px){
-  .page-content{
-    width:80%;
-
-  }
-}
 /*
  Core styles
 */

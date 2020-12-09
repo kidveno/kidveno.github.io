@@ -1,7 +1,7 @@
  <!--Represents a preview of an article-->
 <template>
-  <article>
-      <router-link to="/">
+  <article class="summary">
+      <router-link :to="articleLink">
             See Full Demo
       </router-link>
     <h3>{{dataModel.mainTitle}}</h3>
@@ -21,6 +21,7 @@ import component from '*.vue'
 import { Options, Vue } from 'vue-class-component'
 import ArticleModel from '../model/ArticleModel'
 import Tag from '@/components/Tag.vue'
+import util from '../util'
 
 @Options({
   props: {
@@ -30,13 +31,16 @@ import Tag from '@/components/Tag.vue'
     Tag
   }
 })
-export default class Article extends Vue {
+export default class ArticleSummary extends Vue {
   dataModel!: ArticleModel
+  get articleLink (): string {
+    return `/article/?articleid=${this.dataModel?.id}`
+  }
 }
 </script>
 <style scoped lang="scss">
 
-  article{
+  article.summary{
     width:400px;
     border:2px solid var(--secondary);
     padding:8px;

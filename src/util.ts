@@ -11,7 +11,7 @@ export default {
    * @param index
    * @param self
    */
-  onlyUnique: function (value: any, index: number, self: any) {
+  onlyUnique: (value: any, index: number, self: any) => {
     return self.indexOf(value) === index
   }
 }
