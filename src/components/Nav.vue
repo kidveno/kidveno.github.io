@@ -8,9 +8,11 @@
       {{ name }}
     </span>
     <Search></Search>
-    <button class="nav-btn" v-on:click="openSidebar">
-     Menu <i class="fas fa-bars"></i>
+    <div class="nav-end">
+      <button class="nav-btn" v-on:click="openSidebar">
+     <i class="fas fa-bars"></i>
     </button>
+    </div>
     <Sidebar ref="sidebar"></Sidebar>
   </nav>
 </template>
@@ -112,8 +114,8 @@ nav.main-nav {
   .nav-brand {
     color: var(--secondary);
     background-color: var(--white);
-    margin: 10px;
     padding: 6px;
+    margin-right: 5px;
     font-size: 10pt;
     min-width:13ch;
     border-radius: 1em;

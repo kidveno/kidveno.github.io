@@ -25,7 +25,7 @@
   .article-container{
     display:flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     width:100%;
   }
 </style>

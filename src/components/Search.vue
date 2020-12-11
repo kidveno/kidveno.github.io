@@ -66,7 +66,8 @@ button.clear-btn {
   }
   /* Style of the container for the search component's 'input' element*/
   .search-select {
-    width: 250px;
+    min-width:150px;
+    max-width:200px;
     height: 100%;
     padding: 0;
   /* Style of the search component's 'input' element */

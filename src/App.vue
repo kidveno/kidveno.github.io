@@ -22,7 +22,6 @@
       </a>
     </footer>
   </div>
-  <div id="modals" class="modal-wrapper"></div>
 </template>
 
 <style lang="scss">
@@ -32,12 +31,10 @@
 */
 @media screen and (min-width:0px) and (max-width:768px){
   .page-content{
-    width:100%;
   }
 }
 @media screen and (min-width:768px){
   .page-content{
-    width:80%;
   }
 }
 
@@ -59,10 +56,10 @@
     position: fixed;
     right: 2%;
     top: 2%;
-    color: white;
     background-color: transparent;
-    border: 1px solid white;
-    border-radius: 50%;
+    border:none;
+    font-size: 20px;
+    color:var(--white);
     z-index: 1;
     &:active {
       background-color: white;
@@ -97,19 +94,15 @@
 /*
  Core styles
 */
-html,
 body,
 #app {
   padding: 0;
   margin: 0;
   width: 100vw;
-  height: 100vh;
 
-  overflow-x: hidden;
   font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans,
     Helvetica Neue, Arial, sans-serif;
   color: var(--text);
-  overflow: hidden;
 }
 
 img {
@@ -133,10 +126,10 @@ a {
 
 .page-container {
   width: 100vw;
-  height: 100%;
-  display: flex;
+  height:100vh;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-color: var(--base);
   margin: 0;
   padding: 0;
@@ -168,11 +161,8 @@ a {
 .page-content {
   background-color: var(--white);
   overflow-y: scroll;
-  padding: 1em;
   color: var(--secondary);
-  height:75%;
   margin-top:24px;
-  width:80%;
   display:flex;
   flex-direction:column;
   box-shadow: 0 0 10px 0 #ffffffcc;
@@ -186,13 +176,11 @@ img.rounded{
 }
 footer {
   width: 100%;
-  height: 10%;
+  height: 60px;
   background-color: var(--primary);
-  top: 90%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  position: absolute;
 
   a {
     height: 100%;

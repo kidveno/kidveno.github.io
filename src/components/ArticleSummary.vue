@@ -1,10 +1,12 @@
  <!--Represents a preview of an article-->
 <template>
   <article class="summary">
-      <router-link :to="articleLink">
+    <div class="infos">
+       <router-link :to="articleLink">
             See Full Demo
       </router-link>
-    <h3>{{dataModel.mainTitle}}</h3>
+      <h3>{{dataModel.mainTitle}}</h3>
+    </div>
     <img class="article-img" :src="dataModel.imgPath" />
     <div class="tags">
         <Tag :tagTxt="tag" v-for="tag in dataModel.tags" :key="tag"></Tag>
@@ -41,11 +43,12 @@ export default class ArticleSummary extends Vue {
 <style scoped lang="scss">
 
   article.summary{
-    width:400px;
+    max-width:350px;
     border:2px solid var(--secondary);
-    padding:8px;
     border-radius: 1em;
     margin-bottom: 1em;
+    display:flex;
+    flex-direction: column;
     a {
       float:right;
       width:auto;
@@ -55,7 +58,7 @@ export default class ArticleSummary extends Vue {
       }
     }
     .article-img{
-      width:380px;
+      width:95%;
       height:150px;
       padding:none;
       margin:none;

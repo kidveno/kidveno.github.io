@@ -2,8 +2,10 @@
   Sidebar navigation. Sidebar opened state is stored in $store
 -->
 <template>
-<div :class="modalClass">
-    <button v-on:click="close" class="close-btn">✖</button>
+<div :class="modalClass" v-if="sidebarIsOpened">
+    <button v-on:click="close" class="close-btn">
+      <i class="fas fa-times"></i>
+    </button>
     <div class="sidebar-content-right">
     <div class="sidbar-content-wrapper">
       <h3 class="title">Menu</h3>
@@ -31,7 +33,7 @@
 /* Media Queries */
 @media screen and (min-width:0px) and (max-width:768px){
   .sidebar-content-right{
-    --sidebar-width:150px;
+    --sidebar-width:60%;
   }
 }
 @media screen and (min-width:768px){
@@ -147,11 +149,15 @@ export default class Sidebar extends Vue {
     this.$store.commit('toggleSidebar')
   }
 
+  get sidebarIsOpened (): boolean {
+    return this.$store.state.sidebarOpened
+  }
+
   /**
      * getter for the modal class containing the Sidebar
      */
   public get modalClass () {
-    return this.$store.state.sidebarOpened ? 'modal opened' : 'modal closed'
+    return this.sidebarIsOpened ? 'modal opened' : 'modal closed'
   }
 }
 </script>
