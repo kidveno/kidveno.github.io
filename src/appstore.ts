@@ -1,6 +1,5 @@
 import { Store, createStore } from 'vuex'
-import axios, { AxiosResponse } from 'axios'
-import Article from '@/components/Article.vue'
+import axios from 'axios'
 import ArticleModel from './model/ArticleModel'
 
 const articleDataPath = './assets/articles.json'
